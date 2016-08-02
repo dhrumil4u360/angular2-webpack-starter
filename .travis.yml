@@ -5,3 +5,13 @@ node_js:
   - "node"
 
 sudo: false
+deploy:
+provider: azure_web_apps
+username: "dhrumil_ftp"
+password: "zxlkqw78*"
+site: "webpackdeploy"
+verbose: true
+before_deploy: "npm cache clean && npm run rimraf -- node_modules doc coverage dist"
+deploy: "webpack --config config/webpack.prod.js  --progress --profile --colors --display-error-details --display-cached --bail"
+  ..
+after_deploy:
